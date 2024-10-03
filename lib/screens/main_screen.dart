@@ -1,3 +1,4 @@
+import 'package:downloader_app/screens/settings_screen.dart';
 import 'package:downloader_app/widgets/bottom_navigation.dart';
 import 'package:downloader_app/widgets/history/history_widget.dart';
 import 'package:downloader_app/widgets/home/home_widget.dart';
@@ -13,6 +14,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _selectedPage = 0;
+  final _pagesTitle = ["Tiktok Save", "History"];
   final _pages = [
     const HomeWidget(),
     const HistoryWidget(),
@@ -38,10 +40,22 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Tiktok Save",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Text(
+          _pagesTitle[_selectedPage],
+          style: const TextStyle(fontWeight: FontWeight.bold),
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.menu),
+            tooltip: "Settings",
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute<void>(builder: (BuildContext context) {
+                return const SettingsScreen();
+              }),
+            ),
+          )
+        ],
       ),
       body: IndexedStack(
         index: _selectedPage,
