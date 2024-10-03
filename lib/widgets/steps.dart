@@ -22,7 +22,7 @@ class Steps extends StatelessWidget {
           child: Center(
             child: Text(
               no,
-              style: const TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white, fontSize: 11.0),
             ),
           ),
         ),
